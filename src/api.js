@@ -15,6 +15,7 @@ const LOCALSTORAGE_KEY = 'saved_lectures';
  */
 function loadSavedLectures() {
   /* todo */
+  return JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 }
 
 /**
@@ -27,6 +28,21 @@ function loadSavedLectures() {
  */
 export function getLectureList(filters = []) {
   /* todo */
+  const finished = loadSavedLectures();
+  const lectures = data.lectures;
+  
+  // If there is data in localstorage
+  if (finished) {
+    lectures.forEach(lecture => {
+      lecture.finished = finished.find(slug => slug === lecture.slug) ? true : false;
+    })
+  }
+  if (filters.length === 0) return lectures;
+  else {
+    return lectures.filter(lecture =>
+      filters.find(category => category === lecture.category));
+  }
+
 }
 
 /**
@@ -38,6 +54,12 @@ export function getLectureList(filters = []) {
  */
 export function getLecture(slug) {
   /* todo */
+  const lecture = data.lectures.find(obj => obj.slug === slug);
+  const fin = ((array) => {
+    return array ? array.find(element => element === slug) : null;
+  })(loadSavedLectures())
+
+  return lecture;
 }
 
 /**
@@ -48,4 +70,12 @@ export function getLecture(slug) {
  */
 export function toggleLectureFinish(slug) {
   /* todo */
+  const stored = loadSavedLectures();
+  // Init storage
+  if (!stored) localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([slug]))
+  else {
+    if (stored.find(element => element === slug)) stored.pop(slug)
+    else stored.push(slug);
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(stored));
+  }
 }

@@ -1,0 +1,120 @@
+@import "../../config.scss";
+
+.lecture {
+  &__content {
+    max-width: $max-width;
+    margin: 0 auto;
+
+    @media (max-width: $max-width - 1) {
+      padding-right: $gutter;
+      padding-left: $gutter;
+    }
+  }
+
+  &__row {
+    @include row;
+    margin-bottom: $gutter * 2;
+    flex-wrap: wrap;
+  }
+
+  &__col {
+    @include columns(12);
+
+    margin-bottom: $gutter * 2;
+
+    @media (min-width: 800px) {
+      @include columns(8);
+      @include offset-left(2);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    margin-bottom: $gutter * 3;
+    font-family: $font-heading;
+    color: #000;
+    text-decoration: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__finish {
+    display: inline-block;
+    margin-bottom: $gutter * 2;
+
+    font-family: $font-heading;
+    font-size: 1rem;
+    background: inherit;
+    border: 0;
+    cursor: pointer;
+
+    &--finished {
+      color: #2d2;
+      cursor: pointer;
+    }
+  }
+
+  &__back {
+    font-family: $font-heading;
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.item {
+  margin-bottom: $gutter * 2;
+
+  &__text {
+    margin-bottom: $gutter;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  &__heading {
+    margin-bottom: -$gutter;
+    font-family: $font-heading;
+    font-size: 2rem;
+  }
+
+  &--blockquote {
+    padding: $gutter;
+    margin-right: -$gutter;
+    margin-left: -$gutter;
+    background-color: #ccc;
+  }
+
+  &__code {
+    font-family: $font-heading;
+  }
+
+  &__quote {
+    margin-bottom: $gutter;
+  }
+
+  &__attribute {
+    font-style: italic;
+  }
+
+  &__caption {
+    font-style: italic;
+  }
+
+  &__li {
+    margin-bottom: $gutter;
+  }
+
+  &--youtube &__content {
+    position: relative;
+    max-width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+  }
+
+  &--youtube &__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
