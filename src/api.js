@@ -59,6 +59,8 @@ export function getLecture(slug) {
     return array ? array.find(element => element === slug) : null;
   })(loadSavedLectures())
 
+  lecture.finished = fin ? true : false;
+
   return lecture;
 }
 

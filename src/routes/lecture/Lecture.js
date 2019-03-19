@@ -4,7 +4,9 @@ import { getLecture, toggleLectureFinish } from '../../api';
 
 import Header from '../../components/header/Header';
 import LectureSingle from '../../components/lecture/Lecture';
-import NotFound from '../../routes/not-found/NotFound'
+import NotFound from '../../routes/not-found/NotFound';
+
+import '../../components/lecture/Lecture.scss';
 
 export default class Lecture extends Component {
 
@@ -14,8 +16,8 @@ export default class Lecture extends Component {
     const { slug } = this.props.match.params;
 
     this.state = {
-      lecture: getLecture(slug),
       check: '\u2713',
+      lecture: getLecture(slug),
     };
   }
 
@@ -26,6 +28,7 @@ export default class Lecture extends Component {
 
   render() {
     const { lecture, check } = this.state;
+    console.log(lecture.finished);
 
     return (
       <React.Fragment>
@@ -35,12 +38,9 @@ export default class Lecture extends Component {
             <div className="lecture__row">
               <div className="lecture__col">
                 {
-                  lecture ?
-                  lecture.content.map((element, i) => {
+                  lecture ? lecture.content.map((element, i) => {
                     return (<LectureSingle key={i} content={element}/>)
-                  })
-                  : 
-                  <NotFound/>
+                  }) : <NotFound/>
                 }
               </div>
             </div>
