@@ -34,7 +34,6 @@ export default class Lecture extends Component {
 
   list = data =>
   <div className="item__ul">
-    {console.info(data[0])}
       {data.map((element, i) => {
       return (<li key={i} className="item__li">{element}</li>)
     })}
