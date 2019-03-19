@@ -16,8 +16,8 @@ export default class Lecture extends Component {
     const { slug } = this.props.match.params;
 
     this.state = {
-      check: '\u2713',
       lecture: getLecture(slug),
+      check: '\u2713',
     };
   }
 
@@ -28,7 +28,6 @@ export default class Lecture extends Component {
 
   render() {
     const { lecture, check } = this.state;
-    console.log(lecture.finished);
 
     return (
       <React.Fragment>

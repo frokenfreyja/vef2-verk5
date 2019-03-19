@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 import './Lecture.scss';
 
 /* todo taka við mynd */
-
 export default class Lecture extends Component {
 
   static propTypes = {
     content: PropTypes.any,
   }
 
-  
   youtube = data => <iframe className="item__iframe" title="bahh" src={data} allowFullScreen={true} frameBorder="0"></iframe>
 
   text = data => 

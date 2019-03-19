@@ -58,9 +58,7 @@ export function getLecture(slug) {
   const fin = ((array) => {
     return array ? array.find(element => element === slug) : null;
   })(loadSavedLectures())
-
   lecture.finished = fin ? true : false;
-
   return lecture;
 }
 
@@ -72,12 +70,12 @@ export function getLecture(slug) {
  */
 export function toggleLectureFinish(slug) {
   /* todo */
-  const stored = loadSavedLectures();
-  // Init storage
-  if (!stored) localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([slug]))
-  else {
-    if (stored.find(element => element === slug)) stored.pop(slug)
-    else stored.push(slug);
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(stored));
+  const saved = loadSavedLectures();
+  const index = saved.indexOf(slug);
+  if (index >= 0) {
+    saved.splice(index, 1);
+  } else {
+    saved.push(slug);
   }
+  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(saved));
 }

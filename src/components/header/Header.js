@@ -8,14 +8,14 @@ import './Header.scss';
 
 export default class Header extends React.Component {
 
-  static defaultProps = {
-    image: "img/header.jpg"
-  }
-
   static propTypes = {
     category: PropTypes.string,
     title: PropTypes.string,
     image: PropTypes.string,
+  }
+  
+  static defaultProps = {
+    image: "img/header.jpg"
   }
 
   state = {
