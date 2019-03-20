@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './Item.scss';
 
 /* todo taka við mynd */
-
-export default class Item extends React.Component {
+export default class Item extends Component {
 
   static propTypes = {
-    category: PropTypes.string,
-    title: PropTypes.string,
+    content: PropTypes.any,
   }
 
   youtube = data => <iframe className="item__iframe" title="bahh" src={data} allowFullScreen={true} frameBorder="0"></iframe>
@@ -36,7 +34,6 @@ export default class Item extends React.Component {
 
   list = data =>
   <div className="item__ul">
-    {console.info(data[0])}
       {data.map((element, i) => {
       return (<li key={i} className="item__li">{element}</li>)
     })}

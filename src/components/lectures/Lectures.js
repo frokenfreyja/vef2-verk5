@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import './Lectures.scss';
 
 /* todo taka við mynd */
-
 export default class Lectures extends Component {
 
   state = {

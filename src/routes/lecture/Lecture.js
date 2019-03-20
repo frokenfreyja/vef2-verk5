@@ -3,24 +3,19 @@ import React, { Component } from 'react';
 import { getLecture, toggleLectureFinish } from '../../api';
 
 import Header from '../../components/header/Header';
-import LectureSingle from '../../components/lecture/Lecture';
+import Item from '../../components/item/Item';
 import NotFound from '../../routes/not-found/NotFound';
 
 import '../../components/lecture/Lecture.scss';
+import '../../components/item/Item.scss';
 
 export default class Lecture extends Component {
-
-  constructor(props) {
-    super(props);
-    
-    const { slug } = this.props.match.params;
-
-    this.state = {
-      lecture: getLecture(slug),
+  
+  state = {
+      lecture: getLecture(this.props.match.params.slug),
       check: '\u2713',
-    };
-  }
-
+    }
+  
   handleClick = slug => (e) => {
     toggleLectureFinish(slug)
     this.setState({ lecture: getLecture(slug) });
@@ -38,7 +33,7 @@ export default class Lecture extends Component {
               <div className="lecture__col">
                 {
                   lecture ? lecture.content.map((element, i) => {
-                    return (<LectureSingle key={i} content={element}/>)
+                    return (<Item key={i} content={element}/>)
                   }) : <NotFound/>
                 }
               </div>
@@ -46,8 +41,7 @@ export default class Lecture extends Component {
           </div>
         </section>
         <footer className="lecture__footer">
-          <button 
-            onClick={this.handleClick(lecture.slug)} 
+          <button onClick={this.handleClick(lecture.slug)} 
             className={lecture.finished ? "lecture__finish lecture__finish--finished" : "lecture__finish"}>
             {
               (lecture.finished) ? `${check} Fyrirlestur kláraður` : "Klára fyrirlestur"

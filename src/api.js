@@ -15,7 +15,9 @@ const LOCALSTORAGE_KEY = 'saved_lectures';
  */
 function loadSavedLectures() {
   /* todo */
-  return JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+  const lectures = localStorage.getItem(LOCALSTORAGE_KEY);
+
+  return JSON.parse(lectures);
 }
 
 /**
@@ -28,21 +30,17 @@ function loadSavedLectures() {
  */
 export function getLectureList(filters = []) {
   /* todo */
-  const finished = loadSavedLectures();
   const lectures = data.lectures;
+  const saved = loadSavedLectures();
   
-  // If there is data in localstorage
-  if (finished) {
-    lectures.forEach(lecture => {
-      lecture.finished = finished.find(slug => slug === lecture.slug) ? true : false;
-    })
+  if (saved) {
+    lectures.forEach(lecture => { lecture.finished = saved.find(slug => slug === lecture.slug) ? true : false; })
   }
-  if (filters.length === 0) return lectures;
-  else {
-    return lectures.filter(lecture =>
-      filters.find(category => category === lecture.category));
+  if (filters.length === 0) {
+    return lectures;
+  } else {
+    return lectures.filter(lecture => filters.find(category => category === lecture.category));
   }
-
 }
 
 /**
@@ -55,10 +53,8 @@ export function getLectureList(filters = []) {
 export function getLecture(slug) {
   /* todo */
   const lecture = data.lectures.find(obj => obj.slug === slug);
-  const fin = ((array) => {
-    return array ? array.find(element => element === slug) : null;
-  })(loadSavedLectures())
-  lecture.finished = fin ? true : false;
+  const done = ((array) => { return array ? array.find(element => element === slug) : null; })(loadSavedLectures())
+  lecture.finished = done ? true : false;
   return lecture;
 }
 
