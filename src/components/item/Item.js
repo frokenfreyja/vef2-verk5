@@ -51,7 +51,7 @@ export default class Item extends Component {
     {type: "list", html: this.list},
     {type: "code", html: this.code},
   ];
-
+  
   render() {
     const { content } = this.props;
     const { type, data, ...rest} = content;
