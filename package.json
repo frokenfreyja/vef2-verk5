@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
@@ -15,6 +17,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "eslint": "eslint src",
+    "test": "npm run eslint",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
