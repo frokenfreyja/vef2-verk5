@@ -68,10 +68,34 @@ export function toggleLectureFinish(slug) {
   /* todo */
   const saved = loadSavedLectures();
   const index = saved.indexOf(slug);
+
+  if (!saved) localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([slug]))
+  else {
+    if (index >= 0) saved.splice(index, 1)
+    else saved.push(slug);
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(saved));
+  }
+
+}
+
+/*
+  const saved = loadSavedLectures();
+  const index = saved.indexOf(slug);
   if (index >= 0) {
     saved.splice(index, 1);
   } else {
     saved.push(slug);
   }
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(saved));
-}
+  */
+
+  /*
+    const saved = loadSavedLectures();
+
+  if (!saved) localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([slug]))
+  else {
+    if (saved.find(element => element === slug)) saved.pop(slug)
+    else saved.push(slug);
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(saved));
+  }
+  */
