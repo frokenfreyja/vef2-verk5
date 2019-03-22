@@ -13,7 +13,7 @@ const LOCALSTORAGE_KEY = 'saved_lectures';
  * Sækir alla vistaða fyrirlestra í localStorage.
  * @returns {array} Fylki af slug fyrir vistaða fyrirlestra.
  */
-function loadSavedLectures() {
+export function loadSavedLectures() {
   /* todo */
   const lectures = localStorage.getItem(LOCALSTORAGE_KEY);
 
