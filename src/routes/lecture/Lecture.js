@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getLecture, toggleLectureFinish } from '../../api';
+import { getLecture, toggleLectureFinish, loadSavedLectures } from '../../api';
 
 import Header from '../../components/header/Header';
 import Item from '../../components/item/Item';
@@ -28,6 +28,10 @@ export default class Lecture extends Component {
     target.classList.toggle('lecture__finish--finished');
     toggleLectureFinish(slug, !isFinished);
     this.setState({ lecture: getLecture(slug) });
+  }
+  checkFinished = (slug) => {
+    const saved = loadSavedLectures();
+    return saved.indexOf(slug) >= 0;
   }
 
   render() {
