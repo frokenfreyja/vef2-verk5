@@ -17,7 +17,16 @@ export default class Lecture extends Component {
     }
   
   handleClick = slug => (e) => {
-    toggleLectureFinish(slug)
+    const { target } = e;
+    const isFinished = target.classList.contains('lecture__finish--finished');
+    if (isFinished) {
+      target.textContent = 'Klára fyrirlestur';
+    } else {
+      target.textContent = '✓ Fyrirlestur kláraður';
+    }
+
+    target.classList.toggle('lecture__finish--finished');
+    toggleLectureFinish(slug, !isFinished);
     this.setState({ lecture: getLecture(slug) });
   }
 
